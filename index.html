@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Girlfriend Day, Tifany!</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #fbd6ec, #fef1f8);
+      color: #4a0033;
+      text-align: center;
+      overflow-x: hidden;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 3em;
+      margin: 20px 0 10px;
+    }
+
+    h2 {
+      font-size: 1.5em;
+      color: #7c007d;
+    }
+
+    .heart {
+      font-size: 50px;
+      color: #e60073;
+      animation: pulse 1.2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    .message {
+      background: #fff0f5;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      margin: 30px auto;
+      max-width: 600px;
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #8c4c68;
+    }
+
+    .slideshow-container {
+      position: relative;
+      max-width: 80%;
+      margin: auto;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+
+    .slides {
+      display: none;
+      width: 100%;
+    }
+
+    audio {
+      display: block;
+      margin: 20px auto;
+    }
+
+    .flower {
+      position: fixed;
+      width: 30px;
+      height: 30px;
+      background-image: url('flower.png'); /* Ganti dengan gambar bunga */
+      background-size: contain;
+      background-repeat: no-repeat;
+      top: -50px;
+      animation: fall 7s linear infinite;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .popup {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(255, 240, 245, 0.9);
+      backdrop-filter: blur(5px);
+      border: 2px solid #e89abf;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      z-index: 1000;
+      max-width: 300px;
+      text-align: left;
+      transform: translateY(200%);
+      transition: transform 0.6s ease-in-out;
+    }
+
+    .popup.show {
+      transform: translateY(0);
+    }
+
+    .popup .close-btn {
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      font-weight: bold;
+      font-size: 1.2em;
+      color: #a0335a;
+      cursor: pointer;
+    }
+
+    .typewriter {
+      display: inline-block;
+      border-right: 2px solid #7c007d;
+      white-space: nowrap;
+      overflow: hidden;
+      animation: typing 5s steps(40, end), blink 0.75s step-end infinite;
+      font-size: 1.1em;
+      max-width: 100%;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink {
+      from, to { border-color: transparent }
+      50% { border-color: #7c007d }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="heart">💖</div>
+  <h1>Happy Girlfriend Day</h1>
+  <h2>Untuk Tifany Kishen Devia</h2>
+
+  <audio controls autoplay loop>
+    <source src="music.mp3" type="audio/mpeg" />
+    Browsermu tidak mendukung audio tag.
+  </audio>
+
+  <div class="slideshow-container">
+    <img class="slides" src="img/1.jpg" alt="Foto 1">
+    <img class="slides" src="img/2.jpg" alt="Foto 2">
+    <img class="slides" src="img/3.jpg" alt="Foto 3">
+  </div>
+
+  <div class="message">
+    <div class="typewriter">
+      Tifany, kamu adalah segalanya yang membuat dunia ini lebih indah 🌸
+    </div>
+  </div>
+
+  <footer>
+    Dibuat dengan cinta oleh seseorang yang sangat menyayangimu 💌
+  </footer>
+
+  <div class="popup" id="popup">
+    <div class="close-btn" onclick="closePopup()">×</div>
+    <h3>💌 Surat Cinta</h3>
+    <p>Sayaangg,</p>
+    <p>Aku hanya ingin kamu tahu bahwa setiap detik bersamamu sangat berarti.</p>
+    <p>Kamu adalah hadiah terindah dalam hidupku.</p>
+    <p>Happy Girlfriend Day, Cintaa!</p>
+  </div>
+
+  <script>
+    // Slideshow
+    let slideIndex = 0;
+    function showSlides() {
+      const slides = document.getElementsByClassName("slides");
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      slideIndex++;
+      if (slideIndex > slides.length) { slideIndex = 1 }
+      slides[slideIndex - 1].style.display = "block";
+      setTimeout(showSlides, 3000);
+    }
+    showSlides();
+
+    // Bunga jatuh
+    function createFlower() {
+      const flower = document.createElement("div");
+      flower.classList.add("flower");
+      flower.style.left = Math.random() * window.innerWidth + "px";
+      flower.style.animationDuration = 5 + Math.random() * 5 + "s";
+      document.body.appendChild(flower);
+      setTimeout(() => flower.remove(), 10000);
+    }
+    setInterval(createFlower, 300);
+
+    // Pop-up
+    function closePopup() {
+      document.getElementById("popup").classList.remove("show");
+    }
+
+    setTimeout(() => {
+      document.getElementById("popup").classList.add("show");
+    }, 6000);
+  </script>
+
+</body>
+</html>
